@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>俺のチョコバナナ</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">俺のチョコバナナ</h1>
+        <!-- 画像の挿入 -->
+        <img src="IMG_0022.PNG" alt="俺のチョコバナナのロゴ" class="logo-image">
+        <button id="lotteryButton" onclick="drawLottery()">抽選する</button>
+        <div id="result" class="result-text"></div>
+        <div id="note" class="note"></div>
+    </div>
+
+    <script>
+        function drawLottery() {
+            const result = document.getElementById("result");
+            const note = document.getElementById("note");
+            const button = document.getElementById("lotteryButton");
+
+            result.textContent = "抽選中...";
+            result.classList.add("loading");  // 抽選中のアニメーションを追加
+            button.disabled = true;  // ボタンを無効化
+
+            setTimeout(() => {
+                const random = Math.random();
+                if (random < 0.5) {
+                    result.textContent = "50円分券";
+                    note.textContent = "「俺のチョコバナナ」でしかご使用できません。他のチョコバナナのお店では使えませんご注意ください";
+                } else {
+                    result.textContent = "ハズレ";
+                    note.textContent = ""; // ハズレの場合は注意書きを消す
+                }
+                result.classList.remove("loading");  // 抽選中のアニメーションを解除
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
+
